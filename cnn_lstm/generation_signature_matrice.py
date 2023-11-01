@@ -8,7 +8,7 @@ Construct s (s = 3) signature matrices with different lengths(w = 10, 30, 60)
 
 import numpy as np
 import pandas as pd
-import cnn_lstm.utils as util
+import utils as util
 import os
 
 

@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-import cnn_lstm.utils as util
+import utils as util
 import re
 
 # score initialization
@@ -67,6 +67,7 @@ for k in range(len(anomaly_pos)):
 	axes.axvspan(anomaly_pos[k], anomaly_pos[k] + anomaly_span[k%3]/util.gap_time, color='red', linewidth=2)
 
 labels = [' ', '0e3', '2e3', '4e3', '6e3', '8e3', '10e3']
+axes.set_xticks(np.arange(len(labels)))
 axes.set_xticklabels(labels, rotation = 25, fontsize = 20)
 plt.xlabel('Test Time', fontsize = 25)
 plt.ylabel('Anomaly Score', fontsize = 25)
@@ -77,4 +78,4 @@ axes.xaxis.set_ticks_position('bottom')
 fig.subplots_adjust(bottom=0.25)
 fig.subplots_adjust(left=0.25)
 plt.title("MSCRED", size = 25)
-plt.show()
+plt.savefig('output_filename.png', dpi=300)
