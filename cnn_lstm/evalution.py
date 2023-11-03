@@ -55,7 +55,34 @@ for i in range(5):
 	root_cause_gt[i][0] = anomaly_pos[i]
 
 
-fig, axes = plt.subplots()
+# fig, axes = plt.subplots()
+# test_num = util.test_end_id - util.test_start_id
+# plt.xticks(fontsize = 25)
+# plt.ylim((0, 100))
+# plt.yticks(np.arange(0, 101, 20), fontsize = 25)
+# plt.plot(test_anomaly_score, 'b', linewidth = 2)
+# threshold = np.full((test_num), max_valid_anom * util.alpha)
+# axes.plot(threshold, color = 'black', linestyle = '--',linewidth = 2)
+# for k in range(len(anomaly_pos)):
+# 	axes.axvspan(anomaly_pos[k], anomaly_pos[k] + anomaly_span[k%3]/util.gap_time, color='red', linewidth=2)
+#
+# labels = [' ', '0e3', '2e3', '4e3', '6e3', '8e3', '10e3']
+# axes.set_xticks(np.arange(len(labels)))
+# axes.set_xticklabels(labels, rotation = 25, fontsize = 20)
+# plt.xlabel('Test Time', fontsize = 25)
+# plt.ylabel('Anomaly Score', fontsize = 25)
+# axes.spines['right'].set_visible(False)
+# axes.spines['top'].set_visible(False)
+# axes.yaxis.set_ticks_position('left')
+# axes.xaxis.set_ticks_position('bottom')
+# fig.subplots_adjust(bottom=0.25)
+# fig.subplots_adjust(left=0.25)
+# plt.title("MSCRED", size = 25)
+# plt.savefig('output_filename.png', dpi=300)
+
+
+fig, axes = plt.subplots(figsize=(10, 6))  # Increased figure size for better clarity
+
 test_num = util.test_end_id - util.test_start_id
 plt.xticks(fontsize = 25)
 plt.ylim((0, 100))
@@ -66,16 +93,21 @@ axes.plot(threshold, color = 'black', linestyle = '--',linewidth = 2)
 for k in range(len(anomaly_pos)):
 	axes.axvspan(anomaly_pos[k], anomaly_pos[k] + anomaly_span[k%3]/util.gap_time, color='red', linewidth=2)
 
+# Define labels for the x-axis
 labels = [' ', '0e3', '2e3', '4e3', '6e3', '8e3', '10e3']
-axes.set_xticks(np.arange(len(labels)))
-axes.set_xticklabels(labels, rotation = 25, fontsize = 20)
+# Distribute the x-ticks evenly based on test_num and then set labels for them
+ticks = np.linspace(0, test_num, len(labels))
+axes.set_xticks(ticks)
+axes.set_xticklabels(labels, rotation = 45, fontsize = 20)  # Increased rotation for clarity
+
 plt.xlabel('Test Time', fontsize = 25)
 plt.ylabel('Anomaly Score', fontsize = 25)
 axes.spines['right'].set_visible(False)
 axes.spines['top'].set_visible(False)
 axes.yaxis.set_ticks_position('left')
 axes.xaxis.set_ticks_position('bottom')
-fig.subplots_adjust(bottom=0.25)
+fig.subplots_adjust(bottom=0.3)  # Adjusted for better space management
 fig.subplots_adjust(left=0.25)
 plt.title("MSCRED", size = 25)
+plt.tight_layout()  # Ensures everything fits well
 plt.savefig('output_filename.png', dpi=300)
